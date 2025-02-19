@@ -5,11 +5,7 @@
   "description": "changwei's homepage",
   "homepage": "https://www.changwei.me/",
   "keywords": [],
-  "author": {
-    "name": "Chang Wei",
-    "email": "changwei1006@gmail.com",
-    "url": "https://www.changwei.me/"
-  },
+  "author": "Chang Wei <changwei1006@gmail.com> (https://www.changwei.me/)",
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
@@ -75,5 +71,7 @@
       "bufferutil",
       "sharp"
     ]
-  }
+  },
+  "main": "index.js",
+  "license": "ISC"
 }
