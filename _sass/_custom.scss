@@ -1,0 +1,12 @@
+// ...existing code...
+/* 調整描述文字大小 */
+.description {
+  font-size: 18px; // 可參考 _config.yml 中 custom_description_size 設定，自行調整
+}
+
+/* 自訂圖示樣式 */
+.icon {
+  color: #ff6600;  // 可參考 _config.yml 中 custom_icon_color 設定，自行調整
+  // ...其他圖示樣式設定...
+}
+// ...existing code...

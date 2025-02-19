@@ -119,3 +119,7 @@ sass:
 
 plugins:
  - jekyll-seo-tag
+
+# 自訂選項：描述文字大小及圖示樣式
+custom_description_size: "18px"  # 可自行調整大小
+custom_icon_color: "#ff6600"       # 可自行調整圖示顏色
