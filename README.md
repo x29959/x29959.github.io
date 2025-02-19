@@ -1,39 +1,66 @@
-# www.changwei.me
-This is Chang Wei's website. URL is [https://www.changwei.me/](https://www.changwei.me/) . It is hosted on [Vercel](https://vercel.com/) .
+# Resume template
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+*A simple Jekyll + GitHub Pages powered resume template.*
 
-## Getting Started
+![img](images/screenshot.png)
 
-First, run the development server:
+## Docs
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Running locally
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To test locally, run the following in your terminal:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone repo locally
+1. `bundle install`
+2. `bundle exec jekyll serve`
+3. Open your browser to `localhost:4000`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Running locally with Docker
 
-## Learn More
+To test locally with docker, run the following in your terminal after installing docker into your system:
 
-To learn more about Next.js, take a look at the following resources:
+1. `docker image build -t resume-template .`
+2. `docker run --rm --name resume-template -v "$PWD":/home/app --network host resume-template`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Customizing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+First you'll want to fork the repo to your own account. Then clone it locally and customize, or use the GitHub web editor to customize.
 
-## Deploy on Vercel
+#### Options/configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Most of the basic customization will take place in the `/_config.yml` file. Here is a list of customizations available via `/_config.yml`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[...write these out...]
+
+#### Editing content
+
+Most of the content configuration will take place in the `/_layouts/resume.html` file. Simply edit the markup there accordingly
+
+### Publishing to GitHub Pages for free
+
+[GitHub Pages](https://pages.github.com/) will host this for free with your GitHub account. Just make sure you're using a `gh-pages` branch, and the site will automatically be available at `yourusername.github.io/resume-template` (you can rename the repo to resume for your own use if you want it to be available at `yourusername.github.io/resume`). You can also add a CNAME if you want it to be available at a custom domain...
+
+### Configuring with your own domain name
+
+To setup your GH Pages site with a custom domain, [follow the instructions](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/) on the GitHub Help site for that topic.
+
+### Themes
+
+Right now resume-template only has one theme. More are coming :soon: though. :heart:
+
+## Roadmap
+
+A feature roadmap is [available here](https://github.com/jglovier/resume-template/projects/1). If you features suggestions, please [open a new issue](https://github.com/jglovier/resume-template/issues/new).
+
+## Contributing
+
+If you spot a bug, or want to improve the code, or even make the dummy content better, you can do the following:
+
+1. [Open an issue](https://github.com/jglovier/resume-template/issues/new) describing the bug or feature idea
+2. Fork the project, make changes, and submit a pull request
+
+## License
+
+The code and styles are licensed under the MIT license. [See project license.](LICENSE) Obviously you should not use the content of this demo repo in your own resume. :wink:
+
+Disclaimer: Use of Lisa M. Simpson image and name used under [Fair Use](https://en.wikipedia.org/wiki/Fair_use) for educational purposes. Project license does not apply to use of this material.
