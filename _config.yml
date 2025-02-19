@@ -76,8 +76,10 @@ content:
         sub_title: Senior Network System Administrator
         caption: November 2017 - Present
         description: | # this will include new lines to allow paragraphs
-            1. Contributed to the development of new curriculum materials, enhancing thequality of instruct environment within the department
-            2. Charge to set up the classroom and clean.
+              <div style="font-size: larger;">
+              1. Contributed to the development of new curriculum materials, enhancing thequality of instruct environment within the department
+              2. Charge to set up the classroom and clean.
+              </div>
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
