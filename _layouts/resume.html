@@ -90,6 +90,13 @@
 
 
           <p class="resume-item-copy">{{ education.summary }}</p>
+          <!-- add a list of certificates here -->
+          <ul class="resume-item-list">
+            {% for certificate in education.certificates %}
+            <li>{{ certificate.certificate }}</li>
+            {% endfor %}
+          </ul>
+          
           
     
         </div>
