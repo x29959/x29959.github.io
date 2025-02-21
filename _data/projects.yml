@@ -2,15 +2,22 @@
 # uncomment the urls if you wish to display them, and add your own URL
 
 # jazznotes.io
-- project: jazznotes.io
-  role: Founder & Primary Developer
-  duration: 2012 &mdash; Present
-  # url: "#"
-  description: Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas.
+- image: "/images/jazznotes.png"  # 專案圖片路徑
+  title: "Hyperspectral data acquisition and analysis"
+  period: "2024 &mdash; 2025"
+  description: "Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas."
 
 # Springfield Community Outreach Group
-- project: Springfield Community Outreach Group
-  role: Co-Founder & Organizer
-  duration: 2007 &mdash; Present
-  # url: "#"
-  description: SCOG is a local monthly meetup in Springfield where we share opportunities to volunteer in the community and organize support for families and neighborhoods in need of assistance that the community can provide.
+- image: "/images/springfield.png"  # 專案圖片路徑
+  title: "Springfield Community Outreach Group"
+  period: "2007 &mdash; Present"
+  description: "SCOG is a local monthly meetup in Springfield where we share opportunities to volunteer in the community and organize support for families and neighborhoods in need of assistance."
+
+# Multi-figure project example
+- images:
+    - "/images/project1-1.png"
+    - "/images/project1-2.png"
+    - "/images/project1-3.png"
+  title: "Multi-Figure Project"
+  period: "2020 &mdash; 2021"
+  description: "An example project demonstrating multiple figures (images) in the resume."
