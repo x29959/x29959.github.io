@@ -386,8 +386,12 @@
       
       function showImage(projectId, index) {
         const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        if (!card) return;
+        
         const slides = card.querySelectorAll('.project-image-slide');
         const dots = card.querySelectorAll('.gallery-dot');
+        
+        if (slides.length === 0) return;
         
         slides.forEach(slide => {
           slide.classList.remove('active');
@@ -397,47 +401,55 @@
           dot.classList.remove('active');
         });
         
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
+        if (slides[index]) {
+          slides[index].classList.add('active');
+        }
         
-        // Prevent event from bubbling up to prevent unwanted behaviors
-        event.stopPropagation();
+        if (dots[index]) {
+          dots[index].classList.add('active');
+        }
+        
+        // Prevent event from bubbling up
+        if (event) {
+          event.stopPropagation();
+        }
       }
       
       function nextImage(projectId) {
         const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        if (!card) return;
+        
         const slides = card.querySelectorAll('.project-image-slide');
+        if (slides.length === 0) return;
+        
         const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
         const nextIndex = (currentSlideIndex + 1) % slides.length;
         
         showImage(projectId, nextIndex);
         
-        // Prevent event from bubbling up to prevent unwanted behaviors
-        if (event) event.stopPropagation();
+        // Prevent event from bubbling up
+        if (event) {
+          event.stopPropagation();
+        }
       }
       
       function prevImage(projectId) {
         const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        if (!card) return;
+        
         const slides = card.querySelectorAll('.project-image-slide');
+        if (slides.length === 0) return;
+        
         const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
         const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
         
         showImage(projectId, prevIndex);
         
-        // Prevent event from bubbling up to prevent unwanted behaviors
-        if (event) event.stopPropagation();
+        // Prevent event from bubbling up
+        if (event) {
+          event.stopPropagation();
+        }
       }
-
-      // Directly attach event handlers to gallery dots to prevent default action
-      document.addEventListener('DOMContentLoaded', () => {
-        const galleryDots = document.querySelectorAll('.gallery-dot');
-        galleryDots.forEach(dot => {
-          dot.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          });
-        });
-      });
 
       // Animate skill bars on scroll
       function animateSkillBars() {
@@ -503,6 +515,13 @@
         animateSkillBars();
         setupFadeAnimations();
         setupSmoothScroll();
+        
+        // Fix any missing images by using placeholders
+        document.querySelectorAll('.project-image-slide').forEach(img => {
+          img.addEventListener('error', function() {
+            this.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f59c27b13%20text%20%7B%20fill%3Argba(157%2C157%2C157%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f59c27b13%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22106.6640625%22%20y%3D%2296.3%22%3ENo%20Image%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+          });
+        });
       });
     </script>
   </body>
