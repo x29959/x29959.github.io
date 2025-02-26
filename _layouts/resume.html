@@ -22,7 +22,7 @@
           </div>
           <div class="hero-image fade-in">
             {% if site.resume_avatar == 'true' %}
-              <img src="images/avatar.jpg" alt="{{ site.resume_name }}" class="avatar">
+              <img src="{{ 'images/avatar.jpg' | relative_url }}" alt="{{ site.resume_name }}" class="avatar">
             {% endif %}
           </div>
         </div>
@@ -43,7 +43,7 @@
               <div class="project-image-wrapper">
                 {% if project.images %}
                   {% for image in project.images %}
-                    <img src="{{ image }}" alt="{{ project.title }}" class="project-image-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                    <img src="{{ image | relative_url }}" alt="{{ project.title }}" class="project-image-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
                   {% endfor %}
                   
                   <div class="project-image-controls">
@@ -64,7 +64,7 @@
                     </div>
                   </div>
                 {% elsif project.image %}
-                  <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image-slide active">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-image-slide active">
                   <div class="project-overlay">
                     <h3 class="project-title-overlay">{{ project.title }}</h3>
                   </div>
@@ -91,7 +91,7 @@
                 {% endif %}
               </h3>
               <div class="project-period">{{ project.period }}</div>
-              <p class="project-description">{{ project.description }}</p>
+              <p class="project-description">{{ project.description | markdownify }}</p>
               
               {% if project.languages %}
                 <div class="badge-section">
@@ -408,11 +408,6 @@
         if (dots[index]) {
           dots[index].classList.add('active');
         }
-        
-        // Prevent event from bubbling up
-        if (event) {
-          event.stopPropagation();
-        }
       }
       
       function nextImage(projectId) {
@@ -426,11 +421,6 @@
         const nextIndex = (currentSlideIndex + 1) % slides.length;
         
         showImage(projectId, nextIndex);
-        
-        // Prevent event from bubbling up
-        if (event) {
-          event.stopPropagation();
-        }
       }
       
       function prevImage(projectId) {
@@ -444,11 +434,6 @@
         const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
         
         showImage(projectId, prevIndex);
-        
-        // Prevent event from bubbling up
-        if (event) {
-          event.stopPropagation();
-        }
       }
 
       // Animate skill bars on scroll
