@@ -13,10 +13,6 @@
     - "Python"
     - "TensorFlow"
     - "ENVI"
-  methods:
-    - "Spectral Unmixing"
-    - "Dimensionality Reduction"
-    - "Anomaly Detection"
   url: 
 
 # Android app project
@@ -29,10 +25,6 @@
     - "Java"
     - "Kotlin" 
     - "JavaScript"
-  methods:
-    - "Natural Language Processing"
-    - "Reinforcement Learning"
-    - "Sensor Fusion"
   url: 
 
 # Data Visualization Project
@@ -45,10 +37,6 @@
     - "D3.js"
     - "React"
     - "Node.js"
-  methods:
-    - "Interactive Visualization"
-    - "Data Aggregation"
-    - "Real-time Analytics"
   url: "https://github.com/x29959/data-visualization"
 
 # Multi-figure project example
@@ -64,8 +52,4 @@
     - "CUDA"
     - "OpenCV"
     - "Python"
-  methods:
-    - "Feature Extraction"
-    - "Image Classification"
-    - "Multi-dimensional Visualization"
   url: "https://github.com/x29959/spectral-processing"
