@@ -1,23 +1,53 @@
 # Projects
-# uncomment the urls if you wish to display them, and add your own URL
+# Showcasing your best work with detailed descriptions and technologies used
 
-# jazznotes.io
-- image: "/images/jazznotes.png"  # 專案圖片路徑
-  title: "Hyperspectral data acquisition and analysis"
-  period: "2024 &mdash; 2025"
-  description: "Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas."
+# Hyperspectral data project
+- image: "/images/hyperspectral.jpg"  # You may need to add this image to your images folder
+  title: "Hyperspectral Data Acquisition and Analysis"
+  period: "2024 &mdash; Present"
+  description: "Developed a comprehensive system for hyperspectral data processing and analysis, enabling real-time visualization and extraction of spectral signatures. Created machine learning models to classify materials and detect anomalies from hyperspectral imagery."
+  languages: 
+    - "Python"
+    - "TensorFlow"
+    - "ENVI"
+    - "MATLAB"
+  url: "https://github.com/x29959/hyperspectral-analysis"
 
-# Springfield Community Outreach Group
-- image: "/images/springfield.png"  # 專案圖片路徑
-  title: "Springfield Community Outreach Group"
-  period: "2007 &mdash; Present"
-  description: "SCOG is a local monthly meetup in Springfield where we share opportunities to volunteer in the community and organize support for families and neighborhoods in need of assistance."
+# Machine Learning Project
+- image: "/images/ml-project.jpg"  # You may need to add this image to your images folder
+  title: "Advanced Machine Learning Applications"
+  period: "2023 &mdash; 2024"
+  description: "Implemented various machine learning algorithms for pattern recognition and data classification tasks. Focused on optimizing model performance and reducing computational complexity while maintaining high accuracy."
+  languages:
+    - "Python"
+    - "PyTorch"
+    - "scikit-learn"
+    - "Pandas"
+  url: "https://github.com/x29959/ml-applications"
+
+# Data Visualization Project
+- image: "/images/data-viz.jpg"  # You may need to add this image to your images folder
+  title: "Interactive Data Visualization Dashboard"
+  period: "2023"
+  description: "Created an interactive web-based dashboard for visualizing complex datasets. The platform allows users to explore data through customizable charts, graphs, and maps with filtering capabilities."
+  languages:
+    - "JavaScript"
+    - "D3.js"
+    - "React"
+    - "Node.js"
+  url: "https://github.com/x29959/data-visualization"
 
 # Multi-figure project example
 - images:
-    - "/images/project1-1.png"
-    - "/images/project1-2.png"
-    - "/images/project1-3.png"
-  title: "Multi-Figure Project"
-  period: "2020 &mdash; 2021"
-  description: "An example project demonstrating multiple figures (images) in the resume."
+    - "/images/project-multi-1.jpg"
+    - "/images/project-multi-2.jpg"
+    - "/images/project-multi-3.jpg"
+  title: "Spectral Image Processing System"
+  period: "2022 &mdash; 2023"
+  description: "Developed a comprehensive system for processing and analyzing spectral images across multiple domains. The project involved creating specialized algorithms for feature extraction, classification, and visualization of multi-dimensional data."
+  languages:
+    - "C++"
+    - "CUDA"
+    - "OpenCV"
+    - "Python"
+  url: "https://github.com/x29959/spectral-processing"

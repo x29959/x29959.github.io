@@ -1,12 +1,27 @@
 # Skills
-# Organizational leadership
-- skill: Organizational leadership
-  description: I have several years of experience leading organziations from community groups to business departments. From public speaking, to mentoring, to coordination of people and events, I can lead in any context.
+# Showcasing your technical expertise and professional abilities
 
-# Communications strategy
-- skill: Communications strategy
-  description: Content and marketing strategy,
+# Data Science & Machine Learning
+- skill: "Data Science & Machine Learning"
+  description: "Expert in data analysis, machine learning algorithms, and statistical modeling. Proficient in developing and deploying ML models for classification, regression, and clustering tasks."
+  proficiency: 95
 
-# Digital content development and creation
-- skill: Digital content development and creation
-  description: Copy writing, graphic design, web design, front-end web development, print design
+# Programming Languages
+- skill: "Programming Languages"
+  description: "Proficient in Python, C++, MATLAB, JavaScript, and R for software development, data analysis, and scientific computing applications."
+  proficiency: 90
+
+# Hyperspectral Imaging
+- skill: "Hyperspectral Imaging & Remote Sensing"
+  description: "Specialized in hyperspectral data acquisition, processing, and analysis. Experienced in developing algorithms for feature extraction and classification of spectral imagery."
+  proficiency: 98
+
+# Web Development
+- skill: "Web Development"
+  description: "Skilled in front-end and back-end web development using modern frameworks like React, Node.js, and D3.js. Experience in creating interactive data visualization dashboards."
+  proficiency: 85
+
+# Scientific Research
+- skill: "Scientific Research & Documentation"
+  description: "Strong background in scientific research methodologies, experimental design, and academic writing. Experienced in publishing research findings and technical documentation."
+  proficiency: 90

@@ -1,6 +1,6 @@
 # Site settings
-title: "Steve 莊祐祥 (Zhuang Yu Hsiang)"
-description: "A resume template for Jekyll and GitHub Pages sites."
+title: "Steve 莊祐祥 (Zhuang Yu Hsiang) | Personal Portfolio"
+description: "Steve Zhuang's personal portfolio showcasing software development projects, skills, and professional experience."
 
 # Build settings
 markdown: kramdown
@@ -11,7 +11,7 @@ sass:
 # Resume settings
 resume_avatar:                  "true"
 resume_name:                    "Steve 莊祐祥 (Zhuang Yu Hsiang)"
-resume_title:                   ""
+resume_title:                   "Software Developer & Data Analyst"
 
 # used for the contact button in _layouts/resume.html
 resume_contact_email:           "x29959@hotmail.com"
@@ -20,10 +20,10 @@ resume_contact_email:           "x29959@hotmail.com"
 resume_contact_telephone:       "+886912278252"
 resume_contact_address:         ""
 
-resume_header_contact_info:     ""
-display_header_contact_info:    "false"
+resume_header_contact_info:     "Taiwan | +886912278252 | x29959@hotmail.com"
+display_header_contact_info:    "true"
 
-resume_header_intro: "<p>This is the executive summary. You should write a few brief, concise, and meaningful sentences about yourself from a professional context, and your immediate career goals. Make the length appropriate for your needs, but keep it brief and concise</p>"
+resume_header_intro: "<p>Passionate software developer and data analyst with expertise in hyperspectral data analysis and machine learning. I specialize in creating innovative solutions that combine advanced data processing techniques with practical applications. My goal is to develop technologies that can solve real-world problems through effective data analysis and visualization.</p>"
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,
@@ -40,19 +40,19 @@ resume_section_skills:          true
 resume_section_recognition:     true
 resume_section_links:           true
 resume_section_associations:    true
-# resume_section_interests:       true
+resume_section_interests:       true
 
 # Resume social links
 # uncomment the options you wish to display, and add your own URL
 resume_social_links:
   resume_github_url:            "https://github.com/x29959"
   resume_twitter_url:           "http://twitter.com/x29959"
-  resume_dribbble_url:          "https://dribbble.com/jag"
+  # resume_dribbble_url:          "https://dribbble.com/jag"
   # resume_facebook_url:          "insert Facebook URL here"
-  resume_linkedin_url:          "https://www.linkedin.com/in/joelglovier"
+  resume_linkedin_url:          "https://www.linkedin.com/in/steve-zhuang"
   # resume_instagram_url:         "insert your Instagram URL here"
   resume_website_url:           "http://steve7845123.me"
-  resume_medium_url:            "https://medium.com/@jglovier"
+  # resume_medium_url:            "https://medium.com/@jglovier"
 resume_print_social_links:      true
 
 # Design settings
