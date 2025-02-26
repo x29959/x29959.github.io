@@ -375,7 +375,7 @@
         
         slideshowIntervals[projectId] = setInterval(() => {
           nextImage(projectId);
-        }, 5000); // Change image every 5 seconds
+        }, 3000); // Change image every 3 seconds
       }
       
       function stopSlideshow(projectId) {
@@ -399,6 +399,9 @@
         
         slides[index].classList.add('active');
         dots[index].classList.add('active');
+        
+        // Prevent event from bubbling up to prevent unwanted behaviors
+        event.stopPropagation();
       }
       
       function nextImage(projectId) {
@@ -408,6 +411,9 @@
         const nextIndex = (currentSlideIndex + 1) % slides.length;
         
         showImage(projectId, nextIndex);
+        
+        // Prevent event from bubbling up to prevent unwanted behaviors
+        if (event) event.stopPropagation();
       }
       
       function prevImage(projectId) {
@@ -417,7 +423,21 @@
         const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
         
         showImage(projectId, prevIndex);
+        
+        // Prevent event from bubbling up to prevent unwanted behaviors
+        if (event) event.stopPropagation();
       }
+
+      // Directly attach event handlers to gallery dots to prevent default action
+      document.addEventListener('DOMContentLoaded', () => {
+        const galleryDots = document.querySelectorAll('.gallery-dot');
+        galleryDots.forEach(dot => {
+          dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        });
+      });
 
       // Animate skill bars on scroll
       function animateSkillBars() {
