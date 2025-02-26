@@ -10,7 +10,7 @@
           <div class="hero-text">
             <h1 class="fade-in">{{ site.resume_name }}</h1>
             <p class="hero-subtitle fade-in">{{ site.resume_title }}</p>
-            <div class="hero-intro fade-in"></div>
+            <div class="hero-intro fade-in">
               {{ site.resume_header_intro }}
             </div>
             <div class="hero-buttons fade-in">
@@ -38,20 +38,50 @@
         </div>
         <div class="projects-grid">
           {% for project in site.data.projects %}
-          <div class="project-card fade-in">
-            {% if project.images %}
-              <img src="{{ project.images[0] }}" alt="{{ project.title }}" class="project-image">
-            {% elsif project.image %}
-              <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image">
-            {% else %}
-              <div class="project-image" style="background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
-                  <path d="M14.25 6.75L20.25 12.75L14.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M11.25 6.75L17.25 12.75L11.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M8.25 6.75L14.25 12.75L8.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+          <div class="project-card fade-in" data-project-id="{{ forloop.index }}">
+            <div class="project-image-container">
+              <div class="project-image-wrapper">
+                {% if project.images %}
+                  {% for image in project.images %}
+                    <img src="{{ image }}" alt="{{ project.title }}" class="project-image-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                  {% endfor %}
+                  
+                  <div class="project-image-controls">
+                    <div class="image-control prev" onclick="prevImage({{ forloop.index }})">
+                      <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="image-control next" onclick="nextImage({{ forloop.index }})">
+                      <i class="fas fa-chevron-right"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="project-overlay">
+                    <h3 class="project-title-overlay">{{ project.title }}</h3>
+                    <div class="project-gallery-nav">
+                      {% for image in project.images %}
+                        <div class="gallery-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="showImage({{ forloop.index }}, {{ forloop.index0 }})"></div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% elsif project.image %}
+                  <img src="{{ project.image }}" alt="{{ project.title }}" class="project-image-slide active">
+                  <div class="project-overlay">
+                    <h3 class="project-title-overlay">{{ project.title }}</h3>
+                  </div>
+                {% else %}
+                  <div class="project-image-slide active" style="background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.25 6.75L20.25 12.75L14.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.25 6.75L17.25 12.75L11.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.25 6.75L14.25 12.75L8.25 18.75" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="project-overlay">
+                    <h3 class="project-title-overlay">{{ project.title }}</h3>
+                  </div>
+                {% endif %}
               </div>
-            {% endif %}
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 {% if project.url %}
@@ -64,24 +94,27 @@
               <p class="project-description">{{ project.description }}</p>
               
               {% if project.languages %}
-                <div class="project-languages">
-                  {% for language in project.languages %}
-                    <span class="language-badge">{{ language }}</span>
-                  {% endfor %}
+                <div class="badge-section">
+                  <div class="badge-title">Technologies:</div>
+                  <div class="project-languages">
+                    {% for language in project.languages %}
+                      <span class="language-badge">{{ language }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+              
+              {% if project.methods %}
+                <div class="badge-section">
+                  <div class="badge-title">Methods:</div>
+                  <div class="project-methods">
+                    {% for method in project.methods %}
+                      <span class="method-badge">{{ method }}</span>
+                    {% endfor %}
+                  </div>
                 </div>
               {% endif %}
             </div>
-            
-            {% if project.images and project.images.size > 1 %}
-            <div class="project-overlay">
-              <h3>Gallery</h3>
-              <div class="project-gallery-nav"></div>
-                {% for image in project.images %}
-                  <div class="gallery-dot"></div>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
           </div>
           {% endfor %}
         </div>
@@ -104,7 +137,7 @@
             
             {% if skill.proficiency %}
             <div class="skill-bar">
-              <div class="skill-progress" style="width: {{ skill.proficiency }}%;"></div>
+              <div class="skill-progress" style="width: 0%" data-value="{{ skill.proficiency }}"></div>
             </div>
             {% endif %}
           </div>
@@ -187,7 +220,7 @@
         </div>
         <div class="recognition-container">
           {% for recognition in site.data.recognitions %}
-          <div class="recognition-item fade-in"></div>
+          <div class="recognition-item fade-in">
             <h3 class="resume-item-title">{{ recognition.award }}</h3>
             <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
             <p class="resume-item-copy">{{ recognition.summary }}</p>
@@ -243,7 +276,7 @@
     <!-- Contact Section -->
     <section id="contact" class="section" style="background-color: #f8f9fa;">
       <div class="wrapper">
-        <div class="section-header"></div>
+        <div class="section-header">
           <h2 class="section-title">Get In Touch</h2>
         </div>
         <div class="contact-container fade-in">
@@ -255,7 +288,7 @@
             {% endif %}
             
             {% if site.resume_social_links.resume_linkedin_url %}
-              <a href="{{ site.resume_social_links.resume_linkedin_url }}" class="social-icon" title="LinkedIn"></a>
+              <a href="{{ site.resume_social_links.resume_linkedin_url }}" class="social-icon" title="LinkedIn">
                 {% include icons/icon-linkedin.html %}
               </a>
             {% endif %}
@@ -308,9 +341,108 @@
 
     <!-- JavaScript for animations and interactions -->
     <script>
+      // Image slideshow functionality
+      let slideshowIntervals = {};
+      
+      // Initialize slideshows
+      function initSlideshows() {
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+          const projectId = card.getAttribute('data-project-id');
+          const slides = card.querySelectorAll('.project-image-slide');
+          
+          if (slides.length > 1) {
+            // Start automatic slideshow
+            startSlideshow(projectId);
+            
+            // Pause slideshow on hover
+            card.addEventListener('mouseenter', () => {
+              stopSlideshow(projectId);
+            });
+            
+            // Resume slideshow on mouse leave
+            card.addEventListener('mouseleave', () => {
+              startSlideshow(projectId);
+            });
+          }
+        });
+      }
+      
+      function startSlideshow(projectId) {
+        if (slideshowIntervals[projectId]) {
+          clearInterval(slideshowIntervals[projectId]);
+        }
+        
+        slideshowIntervals[projectId] = setInterval(() => {
+          nextImage(projectId);
+        }, 5000); // Change image every 5 seconds
+      }
+      
+      function stopSlideshow(projectId) {
+        if (slideshowIntervals[projectId]) {
+          clearInterval(slideshowIntervals[projectId]);
+        }
+      }
+      
+      function showImage(projectId, index) {
+        const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        const slides = card.querySelectorAll('.project-image-slide');
+        const dots = card.querySelectorAll('.gallery-dot');
+        
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+        });
+        
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+        });
+        
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+      }
+      
+      function nextImage(projectId) {
+        const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        const slides = card.querySelectorAll('.project-image-slide');
+        const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+        const nextIndex = (currentSlideIndex + 1) % slides.length;
+        
+        showImage(projectId, nextIndex);
+      }
+      
+      function prevImage(projectId) {
+        const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        const slides = card.querySelectorAll('.project-image-slide');
+        const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+        const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+        
+        showImage(projectId, prevIndex);
+      }
+
       // Animate skill bars on scroll
-      document.addEventListener('DOMContentLoaded', function() {
-        // Add scroll animation
+      function animateSkillBars() {
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = entry.target;
+              const value = target.getAttribute('data-value');
+              target.style.width = value + '%';
+              observer.unobserve(target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        skillBars.forEach(bar => {
+          observer.observe(bar);
+        });
+      }
+      
+      // Fade-in animation
+      function setupFadeAnimations() {
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const observer = new IntersectionObserver((entries) => {
@@ -328,16 +460,29 @@
           element.style.transition = 'opacity 0.6s ease-in';
           observer.observe(element);
         });
-        
-        // Smooth scroll for navigation
+      }
+      
+      // Smooth scroll for navigation
+      function setupSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth'
+              });
+            }
           });
         });
+      }
+      
+      // Initialize all functionality when the DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        initSlideshows();
+        animateSkillBars();
+        setupFadeAnimations();
+        setupSmoothScroll();
       });
     </script>
   </body>

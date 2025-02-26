@@ -2,27 +2,41 @@
 # Showcasing your best work with detailed descriptions and technologies used
 
 # Hyperspectral data project
-- image: "/images/hyperspectral_1.jpg"  # You may need to add this image to your images folder
-  image: "/images/hyperspectral_2.jpg"  # You may need to add this image to your images folder
-  image: "/images/hyperspectral_3.jpg"  # You may need to add this image to your images folder
+- images:
+    - "/images/hyperspectral_1.jpg"
+    - "/images/hyperspectral_2.jpg"
+    - "/images/hyperspectral_3.jpg"
   title: "Hyperspectral Data Acquisition and Analysis"
   period: "2024 Nov &mdash; 2025 Jan"
   description: "Developed a comprehensive system for hyperspectral data processing and analysis, enabling real-time visualization and extraction of spectral signatures. Created machine learning models to classify materials and detect anomalies from hyperspectral imagery."
   languages: 
     - "Python"
+    - "TensorFlow"
+    - "ENVI"
+  methods:
+    - "Spectral Unmixing"
+    - "Dimensionality Reduction"
+    - "Anomaly Detection"
   url: 
 
 # Android app project
-- image: "/images/ml-project.jpg"  # You may need to add this image to your images folder
+- image: "/images/ml-project.jpg"
   title: "AI robotics command platform for Android and website"
   period: "2025 Jan &mdash; 2025 Feb"
   description: "Designed and implemented an AI-powered robotics command platform for Android devices. The platform allows users to control robots using commands and monitoring, with real-time feedback and monitoring capabilities."
   languages:
     - "Python"
+    - "Java"
+    - "Kotlin" 
+    - "JavaScript"
+  methods:
+    - "Natural Language Processing"
+    - "Reinforcement Learning"
+    - "Sensor Fusion"
   url: 
 
 # Data Visualization Project
-- image: "/images/data-viz.jpg"  # You may need to add this image to your images folder
+- image: "/images/data-viz.jpg"
   title: "Interactive Data Visualization Dashboard"
   period: "2023"
   description: "Created an interactive web-based dashboard for visualizing complex datasets. The platform allows users to explore data through customizable charts, graphs, and maps with filtering capabilities."
@@ -31,6 +45,10 @@
     - "D3.js"
     - "React"
     - "Node.js"
+  methods:
+    - "Interactive Visualization"
+    - "Data Aggregation"
+    - "Real-time Analytics"
   url: "https://github.com/x29959/data-visualization"
 
 # Multi-figure project example
@@ -46,4 +64,8 @@
     - "CUDA"
     - "OpenCV"
     - "Python"
+  methods:
+    - "Feature Extraction"
+    - "Image Classification"
+    - "Multi-dimensional Visualization"
   url: "https://github.com/x29959/spectral-processing"
