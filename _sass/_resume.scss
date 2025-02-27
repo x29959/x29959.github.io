@@ -135,7 +135,31 @@
 .content-section {
   margin: 0 0 3rem;
 
-  .resume-item { margin-bottom: 2rem; }
+  .resume-item { 
+    margin-bottom: 2rem; 
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    
+    .project-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: flex-start;
+      margin: 1rem 0;
+      
+      img {
+        max-width: 300px;
+        margin: 0;
+      }
+    }
+  }
 
   .resume-item-title {
     @include sans_bold;

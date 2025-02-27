@@ -20,7 +20,7 @@
   url: 
 
 # Android app project
-- image: 
+- images:
     - "/images/app_1.jpg"
     - "/images/app_2.jpg"
   title: "AI robotics command platform for Android and website"
