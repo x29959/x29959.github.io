@@ -3,6 +3,57 @@
   {% include head.html %}
 
   <body>
+    <!-- Social Links Section -->
+    <section class="social-section">
+      <div class="wrapper">
+        <div class="social-links-container fade-in">
+          <div class="social-links">
+            {% if site.resume_social_links.resume_github_url %}
+              <a href="{{ site.resume_social_links.resume_github_url }}" class="social-icon" title="GitHub">
+                {% include icons/icon-github.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_linkedin_url %}
+              <a href="{{ site.resume_social_links.resume_linkedin_url }}" class="social-icon" title="LinkedIn">
+                {% include icons/icon-linkedin.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_twitter_url %}
+              <a href="{{ site.resume_social_links.resume_twitter_url }}" class="social-icon" title="Twitter">
+                {% include icons/icon-twitter.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_website_url %}
+              <a href="{{ site.resume_social_links.resume_website_url }}" class="social-icon" title="Website">
+                {% include icons/icon-website.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_medium_url %}
+              <a href="{{ site.resume_social_links.resume_medium_url }}" class="social-icon" title="Medium">
+                {% include icons/icon-medium.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_instagram_url %}
+              <a href="{{ site.resume_social_links.resume_instagram_url }}" class="social-icon" title="Instagram">
+                {% include icons/icon-instagram.html %}
+              </a>
+            {% endif %}
+            
+            {% if site.resume_social_links.resume_facebook_url %}
+              <a href="{{ site.resume_social_links.resume_facebook_url }}" class="social-icon" title="Facebook">
+                {% include icons/icon-facebook.html %}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="wrapper">
@@ -271,51 +322,6 @@
     </section>
     {% endif %}
 
-    <!-- Additional Sections -->
-    {% if site.resume_section_recognition %}
-    <section id="recognition" class="section">
-      <div class="wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Recognition</h2>
-        </div>
-        <div class="recognition-container">
-          {% for recognition in site.data.recognitions %}
-          <div class="recognition-item fade-in">
-            <h3 class="resume-item-title">{{ recognition.award }}</h3>
-            <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
-            <p class="resume-item-copy">{{ recognition.summary }}</p>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    {% if site.resume_section_associations %}
-    <section id="associations" class="section" style="background-color: #f8f9fa;">
-      <div class="wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Associations</h2>
-        </div>
-        <div class="associations-container">
-          {% for association in site.data.associations %}
-          <div class="association-item fade-in">
-            <h3 class="resume-item-title">
-              {% if association.url %}
-                <a href="{{ association.url }}">{{ association.organization }}</a>
-              {% else %}
-                {{ association.organization }}
-              {% endif %}
-            </h3>
-            <h4 class="resume-item-details">{{ association.role }} &bull; {{ association.year }}</h4>
-            <p class="resume-item-copy">{{ association.summary }}</p>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
     {% if site.resume_section_interests %}
     <section id="interests" class="section">
       <div class="wrapper">
@@ -333,65 +339,11 @@
     </section>
     {% endif %}
 
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="background-color: #f8f9fa;">
+    <footer class="page-footer">
       <div class="wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Get In Touch</h2>
-        </div>
-        <div class="contact-container fade-in">
-          <div class="social-links">
-            {% if site.resume_social_links.resume_github_url %}
-              <a href="{{ site.resume_social_links.resume_github_url }}" class="social-icon" title="GitHub">
-                {% include icons/icon-github.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_linkedin_url %}
-              <a href="{{ site.resume_social_links.resume_linkedin_url }}" class="social-icon" title="LinkedIn">
-                {% include icons/icon-linkedin.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_twitter_url %}
-              <a href="{{ site.resume_social_links.resume_twitter_url }}" class="social-icon" title="Twitter">
-                {% include icons/icon-twitter.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_website_url %}
-              <a href="{{ site.resume_social_links.resume_website_url }}" class="social-icon" title="Website">
-                {% include icons/icon-website.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_medium_url %}
-              <a href="{{ site.resume_social_links.resume_medium_url }}" class="social-icon" title="Medium">
-                {% include icons/icon-medium.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_instagram_url %}
-              <a href="{{ site.resume_social_links.resume_instagram_url }}" class="social-icon" title="Instagram">
-                {% include icons/icon-instagram.html %}
-              </a>
-            {% endif %}
-            
-            {% if site.resume_social_links.resume_facebook_url %}
-              <a href="{{ site.resume_social_links.resume_facebook_url }}" class="social-icon" title="Facebook">
-                {% include icons/icon-facebook.html %}
-              </a>
-            {% endif %}
-          </div>
-          
-          {% if site.resume_looking_for_work == 'yes' %}
-            <div class="contact-cta">
-              <a href="mailto:{{ site.resume_contact_email }}" class="btn">Email Me</a>
-            </div>
-          {% endif %}
-        </div>
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.resume_name }}. All rights reserved.</p>
       </div>
-    </section>
+    </footer>
 
     <!-- Add Image Modal for zoomed view -->
     <div id="imageModal" class="image-modal">
@@ -405,12 +357,6 @@
         </div>
       </div>
     </div>
-
-    <footer class="page-footer">
-      <div class="wrapper">
-        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.resume_name }}. All rights reserved.</p>
-      </div>
-    </footer>
 
     <!-- JavaScript for animations and interactions -->
     <script>

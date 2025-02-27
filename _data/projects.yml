@@ -40,17 +40,16 @@
     - "Rtmp server"
   url: 
 
-# Data Visualization Project
+# Cloud Structure Project
 - image: "/images/cloud_structure.jpg"
   title: "Distributed structure for training in AIoT devices"
   period: "2023 Sep &mdash; Present"
   description: "Developed a distributed structure which consists cloud, edge, on-devices for training AI models on IoT devices, enabling real-time data processing and analysis. The project involved creating a scalable architecture for distributed training and inference on edge devices."
-  
   methods:
     - "Network Address Translation (NAT)"
   url:
 
-# Multi-figure project example
+# SLAM Project
 - images:
     - "/images/slam_1.jpg"
     - "/images/slam_2.jpg"

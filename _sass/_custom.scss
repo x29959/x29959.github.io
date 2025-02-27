@@ -143,18 +143,24 @@
   height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 30px;
+  border: none;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
 .project-image-container {
   position: relative;
   overflow: hidden;
-  height: 220px;
+  height: 250px;
   width: 100%;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
 }
 
 .project-image-wrapper {
@@ -287,6 +293,13 @@
   padding: 20px;
   transition: opacity 0.3s ease;
   z-index: 1;
+  opacity: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7));
+  transition: opacity 0.3s ease;
+}
+
+.project-image-container:hover .project-overlay {
+  opacity: 1;
 }
 
 .project-title-overlay {
@@ -500,19 +513,21 @@
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: white;
   border-radius: 50%;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .social-icon:hover {
-  background-color: #0d6efd;
   transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-color: #0d6efd;
 }
 
 .social-icon:hover svg path {
@@ -549,4 +564,66 @@
 .btn-outline:hover {
   background-color: #0d6efd;
   color: white;
+}
+
+// Add styles for the new social section at the top
+.social-section {
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.social-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+// Update section styles
+.section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.section:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #0d6efd;
+  border-radius: 2px;
+}
+
+// Add smooth scrolling for the entire page
+html {
+  scroll-behavior: smooth;
 }
