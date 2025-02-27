@@ -1,6 +1,6 @@
 # Jobs
 # VP of Global Communications
-- company: "Go to the conference ARIS paper to present paper"
+- title: "Go to the conference ARIS paper to present paper"
   position: 
   duration: " Sep 1 2023"
   summary: Present conference paper in English
@@ -8,7 +8,7 @@
     - "/images/ARIS_1.jpg"
     - "/images/ARIS_2.jpg"
 
-- company: "Cooperative with international classmates to complete the project"
+- title: "Cooperative with international classmates to complete the project"
   duration: "Feb 2023 &mdash; Jun 2023"
   summary: "Leading a team of several international students to complete the project"
   images:

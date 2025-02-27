@@ -57,7 +57,6 @@
                   </div>
                   
                   <div class="project-overlay">
-                    <h3 class="project-title-overlay">{{ project.title }}</h3>
                     <div class="project-gallery-nav">
                       {% for image in project.images %}
                         <div class="gallery-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="showImage({{ forloop.index }}, {{ forloop.index0 }})"></div>
@@ -136,9 +135,9 @@
             <div class="project-content full-width">
               <h3 class="project-title">
                 {% if job.url %}
-                  <a href="{{ job.url }}">{{ job.company }}</a>
+                  <a href="{{ job.url }}">{{ job.title }}</a>
                 {% else %}
-                  {{ job.company }}
+                  {{ job.title }}
                 {% endif %}
               </h3>
               
@@ -146,7 +145,7 @@
                 <div class="project-image-wrapper">
                   {% if job.images %}
                     {% for image in job.images %}
-                      <img src="{{ image | relative_url }}" alt="{{ job.company }}" class="project-image-slide zoomable-image {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-full-img="{{ image | relative_url }}">
+                      <img src="{{ image | relative_url }}" alt="{{ job.title }}" class="project-image-slide zoomable-image {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-full-img="{{ image | relative_url }}">
                     {% endfor %}
                     
                     <div class="project-image-controls">
@@ -159,7 +158,6 @@
                     </div>
                     
                     <div class="project-overlay">
-                      <h3 class="project-title-overlay">{{ job.company }}</h3>
                       <div class="project-gallery-nav">
                         {% for image in job.images %}
                           <div class="gallery-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="showJobImage({{ forloop.index }}, {{ forloop.index0 }})"></div>
