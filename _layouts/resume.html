@@ -43,7 +43,7 @@
               <div class="project-image-wrapper">
                 {% if project.images %}
                   {% for image in project.images %}
-                    <img src="{{ image | relative_url }}" alt="{{ project.title }}" class="project-image-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                    <img src="{{ image | relative_url }}" alt="{{ project.title }}" class="project-image-slide zoomable-image {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-full-img="{{ image | relative_url }}">
                   {% endfor %}
                   
                   <div class="project-image-controls">
@@ -64,7 +64,7 @@
                     </div>
                   </div>
                 {% elsif project.image %}
-                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-image-slide active">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-image-slide zoomable-image active" data-full-img="{{ project.image | relative_url }}">
                   <div class="project-overlay">
                     <h3 class="project-title-overlay">{{ project.title }}</h3>
                   </div>
@@ -333,6 +333,17 @@
       </div>
     </section>
 
+    <!-- Add Image Modal for zoomed view -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal">&times;</span>
+      <img class="modal-content" id="modalImage">
+      <div class="modal-caption" id="modalCaption"></div>
+      <div class="modal-navigation">
+        <button id="prevImageBtn" class="modal-nav-btn">&lt;</button>
+        <button id="nextImageBtn" class="modal-nav-btn">&gt;</button>
+      </div>
+    </div>
+
     <footer class="page-footer">
       <div class="wrapper">
         <p>&copy; {{ 'now' | date: "%Y" }} {{ site.resume_name }}. All rights reserved.</p>
@@ -343,6 +354,8 @@
     <script>
       // Image slideshow functionality
       let slideshowIntervals = {};
+      let currentModalProjectId = null;
+      let currentModalImageIndex = 0;
       
       // Initialize slideshows
       function initSlideshows() {
@@ -436,6 +449,126 @@
         showImage(projectId, prevIndex);
       }
 
+      // Image Modal functionality
+      function setupImageModal() {
+        // Get the modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.close-modal');
+        const prevBtn = document.getElementById('prevImageBtn');
+        const nextBtn = document.getElementById('nextImageBtn');
+        
+        // Get all zoomable images
+        const images = document.querySelectorAll('.zoomable-image');
+        
+        images.forEach(img => {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', function() {
+            const projectCard = this.closest('.project-card');
+            if (projectCard) {
+              currentModalProjectId = projectCard.getAttribute('data-project-id');
+              currentModalImageIndex = parseInt(this.getAttribute('data-index') || 0);
+              
+              modal.style.display = 'block';
+              modalImg.src = this.getAttribute('data-full-img') || this.src;
+              captionText.innerHTML = this.alt;
+              
+              // Check if there are multiple images
+              const projectImages = projectCard.querySelectorAll('.project-image-slide');
+              if (projectImages.length > 1) {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+              } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+              }
+              
+              // Stop slideshow when modal is open
+              stopSlideshow(currentModalProjectId);
+            }
+          });
+        });
+        
+        // Close the modal
+        closeBtn.addEventListener('click', function() {
+          modal.style.display = 'none';
+          
+          // Resume slideshow when modal is closed
+          if (currentModalProjectId) {
+            startSlideshow(currentModalProjectId);
+            currentModalProjectId = null;
+          }
+        });
+        
+        // Click outside to close
+        modal.addEventListener('click', function(event) {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+            
+            // Resume slideshow when modal is closed
+            if (currentModalProjectId) {
+              startSlideshow(currentModalProjectId);
+              currentModalProjectId = null;
+            }
+          }
+        });
+        
+        // Navigate through images in modal
+        prevBtn.addEventListener('click', function() {
+          if (currentModalProjectId) {
+            navigateModalImage('prev');
+          }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+          if (currentModalProjectId) {
+            navigateModalImage('next');
+          }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+          if (modal.style.display === 'block') {
+            if (event.key === 'Escape') {
+              modal.style.display = 'none';
+              
+              if (currentModalProjectId) {
+                startSlideshow(currentModalProjectId);
+                currentModalProjectId = null;
+              }
+            } else if (event.key === 'ArrowLeft') {
+              navigateModalImage('prev');
+            } else if (event.key === 'ArrowRight') {
+              navigateModalImage('next');
+            }
+          }
+        });
+      }
+      
+      function navigateModalImage(direction) {
+        if (!currentModalProjectId) return;
+        
+        const projectCard = document.querySelector(`.project-card[data-project-id="${currentModalProjectId}"]`);
+        if (!projectCard) return;
+        
+        const images = projectCard.querySelectorAll('.project-image-slide');
+        if (images.length <= 1) return;
+        
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        
+        if (direction === 'next') {
+          currentModalImageIndex = (currentModalImageIndex + 1) % images.length;
+        } else {
+          currentModalImageIndex = (currentModalImageIndex - 1 + images.length) % images.length;
+        }
+        
+        const currentImage = images[currentModalImageIndex];
+        modalImg.src = currentImage.getAttribute('data-full-img') || currentImage.src;
+        captionText.innerHTML = currentImage.alt;
+      }
+
       // Animate skill bars on scroll
       function animateSkillBars() {
         const skillBars = document.querySelectorAll('.skill-progress');
@@ -479,6 +612,26 @@
         });
       }
       
+      // Handle image loading errors and optimize images
+      function optimizeImages() {
+        const images = document.querySelectorAll('.project-image-slide');
+        
+        images.forEach(img => {
+          // Handle loading errors
+          img.addEventListener('error', function() {
+            this.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f59c27b13%20text%20%7B%20fill%3Argba(157%2C157%2C157%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f59c27b13%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22106.6640625%22%20y%3D%2296.3%22%3ENo%20Image%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+          });
+          
+          // Add loading attribute for better performance
+          img.loading = 'lazy';
+          
+          // Use correct size for thumbnails vs full-size
+          if (!img.hasAttribute('data-full-img')) {
+            img.setAttribute('data-full-img', img.src);
+          }
+        });
+      }
+      
       // Smooth scroll for navigation
       function setupSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -497,16 +650,11 @@
       // Initialize all functionality when the DOM is ready
       document.addEventListener('DOMContentLoaded', function() {
         initSlideshows();
+        setupImageModal();
         animateSkillBars();
         setupFadeAnimations();
         setupSmoothScroll();
-        
-        // Fix any missing images by using placeholders
-        document.querySelectorAll('.project-image-slide').forEach(img => {
-          img.addEventListener('error', function() {
-            this.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f59c27b13%20text%20%7B%20fill%3Argba(157%2C157%2C157%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f59c27b13%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22106.6640625%22%20y%3D%2296.3%22%3ENo%20Image%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
-          });
-        });
+        optimizeImages();
       });
     </script>
   </body>

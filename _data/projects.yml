@@ -13,6 +13,10 @@
     - "Python"
     - "TensorFlow"
     - "ENVI"
+  methods:
+    - "Deep Learning"
+    - "Spectral Analysis"
+    - "Feature Extraction"
   url: 
 
 # Android app project
@@ -25,6 +29,10 @@
     - "Java"
     - "Kotlin" 
     - "JavaScript"
+  methods:
+    - "Robotic Control"
+    - "Real-time Communication"
+    - "UI/UX Design"
   url: 
 
 # Data Visualization Project
@@ -37,6 +45,10 @@
     - "D3.js"
     - "React"
     - "Node.js"
+  methods:
+    - "Data Analysis"
+    - "Interactive Visualization"
+    - "User-centered Design"
   url: "https://github.com/x29959/data-visualization"
 
 # Multi-figure project example
@@ -52,4 +64,9 @@
     - "CUDA"
     - "OpenCV"
     - "Python"
+  methods:
+    - "Image Processing"
+    - "CUDA Parallelization"
+    - "Computer Vision"
+    - "Pattern Recognition"
   url: "https://github.com/x29959/spectral-processing"
