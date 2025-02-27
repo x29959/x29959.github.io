@@ -1,56 +1,54 @@
 # Jobs
 # VP of Global Communications
-- company: Springfield International Human Rights Outreach
-  position: VP of Global Communications
-  duration: Oct, 2013 &mdash; Present
-  summary: Write about your core competencies in one or two sentences describing your position. If you held the position for a long time, it could be a longer section, including a couple bullet points	<ul class="resume-item-list"><li>A project you are proud of</li><li>Another awesome project</li><li>or a team or department you worked with</li></ul>
-
-- company: "Tech Innovation Lab"
-  position: "Lead AI Researcher"
-  duration: "Jan 2022 &mdash; Present"
-  summary: "Leading a team of researchers focused on developing cutting-edge AI solutions for real-world problems. Spearheaded projects in computer vision, natural language processing, and reinforcement learning. Collaborated with cross-functional teams to implement AI solutions for enterprise clients."
+- company: "Go to the conference ARIS paper to present paper"
+  position: 
+  duration: " Sep 1 2023"
+  summary: Present conference paper in English
   images:
-    - "/images/hyperspectral_1.jpg"
-    - "/images/app_1.jpg"
-  technologies:
-    - "Python"
-    - "TensorFlow"
-    - "PyTorch"
-    - "Computer Vision"
-  achievements:
-    - "Developed a novel approach to image segmentation that improved accuracy by 15%"
-    - "Published 3 research papers in top-tier AI conferences"
-    - "Mentored 5 junior researchers who went on to secure positions at leading tech companies"
+    - "/images/ARIS_1.jpg"
+    - "/images/ARIS_2.jpg"
 
-- company: "Data Solutions Inc."
-  position: "Machine Learning Engineer"
-  duration: "Mar 2019 &mdash; Dec 2021"
-  summary: "Designed and implemented machine learning systems for data analysis and predictive modeling. Worked on optimizing algorithms for large-scale data processing. Developed custom solutions for business intelligence and automated decision-making systems."
+- company: "Cooperative with international classmates to complete the project"
+  duration: "Feb 2023 &mdash; Jun 2023"
+  summary: "Leading a team of several international students to complete the project"
   images:
-    - "/images/slam_1.jpg"
-    - "/images/slam_2.jpg"
+    - "/images/project_1.jpg"
+    - "/images/project_2.jpg"
   technologies:
-    - "Python"
-    - "Scikit-learn"
-    - "SQL"
-    - "AWS"
-  achievements:
-    - "Reduced model training time by 40% through optimization techniques"
-    - "Created an automated pipeline that increased data processing efficiency by 25%"
-    - "Implemented a recommendation system that improved user engagement by 18%"
 
-- company: "Cloud Computing Platforms"
-  position: "Software Developer"
-  duration: "Jun 2017 &mdash; Feb 2019"
-  summary: "Developed cloud-based applications and services for enterprise clients. Focused on scalable, fault-tolerant systems using microservice architecture. Implemented continuous integration and deployment pipelines for efficient software delivery."
-  image: "/images/cloud_structure.jpg"
-  technologies:
-    - "Java"
-    - "Spring Boot"
-    - "Docker"
-    - "Kubernetes"
   achievements:
-    - "Led the migration of legacy systems to a modern microservice architecture"
-    - "Improved system uptime from 98.5% to 99.9% through architectural improvements"
-    - "Reduced deployment cycles from weeks to days by implementing CI/CD practices"
+    - "The project was completed on time and the quality was excellent"
+    - "Write a paper on the project and submit it to the conference"
+    - "Enhanced the ability to communicate with international students"
+# - company: "Data Solutions Inc."
+#   position: "Machine Learning Engineer"
+#   duration: "Mar 2019 &mdash; Dec 2021"
+#   summary: "Designed and implemented machine learning systems for data analysis and predictive modeling. Worked on optimizing algorithms for large-scale data processing. Developed custom solutions for business intelligence and automated decision-making systems."
+#   images:
+#     - "/images/slam_1.jpg"
+#     - "/images/slam_2.jpg"
+#   technologies:
+#     - "Python"
+#     - "Scikit-learn"
+#     - "SQL"
+#     - "AWS"
+#   achievements:
+#     - "Reduced model training time by 40% through optimization techniques"
+#     - "Created an automated pipeline that increased data processing efficiency by 25%"
+#     - "Implemented a recommendation system that improved user engagement by 18%"
+
+# - company: "Cloud Computing Platforms"
+#   position: "Software Developer"
+#   duration: "Jun 2017 &mdash; Feb 2019"
+#   summary: "Developed cloud-based applications and services for enterprise clients. Focused on scalable, fault-tolerant systems using microservice architecture. Implemented continuous integration and deployment pipelines for efficient software delivery."
+#   image: "/images/cloud_structure.jpg"
+#   technologies:
+#     - "Java"
+#     - "Spring Boot"
+#     - "Docker"
+#     - "Kubernetes"
+#   achievements:
+#     - "Led the migration of legacy systems to a modern microservice architecture"
+#     - "Improved system uptime from 98.5% to 99.9% through architectural improvements"
+#     - "Reduced deployment cycles from weeks to days by implementing CI/CD practices"
 
