@@ -335,12 +335,14 @@
 
     <!-- Add Image Modal for zoomed view -->
     <div id="imageModal" class="image-modal">
-      <span class="close-modal">&times;</span>
-      <img class="modal-content" id="modalImage">
-      <div class="modal-caption" id="modalCaption"></div>
-      <div class="modal-navigation">
-        <button id="prevImageBtn" class="modal-nav-btn">&lt;</button>
-        <button id="nextImageBtn" class="modal-nav-btn">&gt;</button>
+      <div class="modal-container">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+        <div class="modal-navigation">
+          <button id="prevImageBtn" class="modal-nav-btn">&lt;</button>
+          <button id="nextImageBtn" class="modal-nav-btn">&gt;</button>
+        </div>
       </div>
     </div>
 
@@ -464,17 +466,30 @@
         
         images.forEach(img => {
           img.style.cursor = 'pointer';
-          img.addEventListener('click', function() {
+          img.addEventListener('click', function(e) {
+            e.preventDefault(); // 防止默認行為
+            
             const projectCard = this.closest('.project-card');
             if (projectCard) {
               currentModalProjectId = projectCard.getAttribute('data-project-id');
               currentModalImageIndex = parseInt(this.getAttribute('data-index') || 0);
               
+              // 顯示模態視窗
               modal.style.display = 'block';
+              document.body.style.overflow = 'hidden'; // 防止背景滾動
+              
+              // 設置圖片和標題
               modalImg.src = this.getAttribute('data-full-img') || this.src;
               captionText.innerHTML = this.alt;
               
-              // Check if there are multiple images
+              // 載入高解析度圖片
+              const highResImg = new Image();
+              highResImg.onload = function() {
+                modalImg.src = this.src;
+              };
+              highResImg.src = this.getAttribute('data-full-img') || this.src;
+              
+              // 檢查是否有多個圖片
               const projectImages = projectCard.querySelectorAll('.project-image-slide');
               if (projectImages.length > 1) {
                 prevBtn.style.display = 'block';
@@ -484,59 +499,44 @@
                 nextBtn.style.display = 'none';
               }
               
-              // Stop slideshow when modal is open
+              // 停止自動輪播
               stopSlideshow(currentModalProjectId);
             }
           });
         });
         
-        // Close the modal
+        // 關閉模態視窗
         closeBtn.addEventListener('click', function() {
-          modal.style.display = 'none';
-          
-          // Resume slideshow when modal is closed
-          if (currentModalProjectId) {
-            startSlideshow(currentModalProjectId);
-            currentModalProjectId = null;
-          }
+          closeModal();
         });
         
-        // Click outside to close
+        // 點擊背景關閉
         modal.addEventListener('click', function(event) {
           if (event.target === modal) {
-            modal.style.display = 'none';
-            
-            // Resume slideshow when modal is closed
-            if (currentModalProjectId) {
-              startSlideshow(currentModalProjectId);
-              currentModalProjectId = null;
-            }
+            closeModal();
           }
         });
         
-        // Navigate through images in modal
-        prevBtn.addEventListener('click', function() {
+        // 在模態視窗中導航
+        prevBtn.addEventListener('click', function(e) {
+          e.stopPropagation(); // 防止事件冒泡導致關閉模態視窗
           if (currentModalProjectId) {
             navigateModalImage('prev');
           }
         });
         
-        nextBtn.addEventListener('click', function() {
+        nextBtn.addEventListener('click', function(e) {
+          e.stopPropagation(); // 防止事件冒泡導致關閉模態視窗
           if (currentModalProjectId) {
             navigateModalImage('next');
           }
         });
         
-        // Keyboard navigation
+        // 鍵盤導航
         document.addEventListener('keydown', function(event) {
           if (modal.style.display === 'block') {
             if (event.key === 'Escape') {
-              modal.style.display = 'none';
-              
-              if (currentModalProjectId) {
-                startSlideshow(currentModalProjectId);
-                currentModalProjectId = null;
-              }
+              closeModal();
             } else if (event.key === 'ArrowLeft') {
               navigateModalImage('prev');
             } else if (event.key === 'ArrowRight') {
@@ -544,6 +544,17 @@
             }
           }
         });
+        
+        function closeModal() {
+          modal.style.display = 'none';
+          document.body.style.overflow = ''; // 恢復背景滾動
+          
+          // 恢復自動輪播
+          if (currentModalProjectId) {
+            startSlideshow(currentModalProjectId);
+            currentModalProjectId = null;
+          }
+        }
       }
       
       function navigateModalImage(direction) {
@@ -565,7 +576,17 @@
         }
         
         const currentImage = images[currentModalImageIndex];
-        modalImg.src = currentImage.getAttribute('data-full-img') || currentImage.src;
+        // 設置圖片並顯示載入中效果
+        modalImg.style.opacity = 0.5;
+        
+        // 載入高解析度圖片
+        const highResImg = new Image();
+        highResImg.onload = function() {
+          modalImg.src = this.src;
+          modalImg.style.opacity = 1;
+        };
+        highResImg.src = currentImage.getAttribute('data-full-img') || currentImage.src;
+        
         captionText.innerHTML = currentImage.alt;
       }
 
