@@ -20,45 +20,45 @@
   url: 
 
 # Android app project
-- image: "/images/ml-project.jpg"
+- image: 
+    - "/images/app_1.jpg"
+    - "/images/app_2.jpg"
   title: "AI robotics command platform for Android and website"
   period: "2025 Jan &mdash; 2025 Feb"
   description: "Designed and implemented an AI-powered robotics command platform for Android devices. The platform allows users to control robots using commands and monitoring, with real-time feedback and monitoring capabilities."
   languages:
     - "Python"
     - "Java"
-    - "Kotlin" 
+    - "Gradle" 
     - "JavaScript"
+    - "Node.js"
   methods:
     - "Robotic Control"
     - "Real-time Communication"
     - "UI/UX Design"
+    - "Web Development"
+    - "Rtmp server"
   url: 
 
 # Data Visualization Project
-- image: "/images/data-viz.jpg"
-  title: "Interactive Data Visualization Dashboard"
-  period: "2023"
-  description: "Created an interactive web-based dashboard for visualizing complex datasets. The platform allows users to explore data through customizable charts, graphs, and maps with filtering capabilities."
-  languages:
-    - "JavaScript"
-    - "D3.js"
-    - "React"
-    - "Node.js"
+- image: "/images/cloud_structure.jpg"
+  title: "Distributed structure for training in AIoT devices"
+  period: "2023 Sep &mdash; Present"
+  description: "Developed a distributed structure which consists cloud, edge, on-devices for training AI models on IoT devices, enabling real-time data processing and analysis. The project involved creating a scalable architecture for distributed training and inference on edge devices."
+  
   methods:
-    - "Data Analysis"
-    - "Interactive Visualization"
-    - "User-centered Design"
-  url: "https://github.com/x29959/data-visualization"
+    - "Network Address Translation (NAT)"
+  url:
 
 # Multi-figure project example
 - images:
-    - "/images/project-multi-1.jpg"
-    - "/images/project-multi-2.jpg"
-    - "/images/project-multi-3.jpg"
-  title: "Spectral Image Processing System"
+    - "/images/slam_1.jpg"
+    - "/images/slam_2.jpg"
+    - "/images/slam_3.jpg"
+    - "/images/slam_4.jpg"
+  title: "Deep Learning based Visual Simultaneous Localization and Mapping for a Mobile Robot"
   period: "2022 &mdash; 2023"
-  description: "Developed a comprehensive system for processing and analyzing spectral images across multiple domains. The project involved creating specialized algorithms for feature extraction, classification, and visualization of multi-dimensional data."
+  description: "Developed a deep learning-based visual SLAM system for a mobile robot, enabling real-time localization and mapping in dynamic environments. The system utilized a combination of deep neural networks and traditional SLAM techniques to achieve high-precision localization and mapping."
   languages:
     - "C++"
     - "CUDA"
@@ -66,7 +66,7 @@
     - "Python"
   methods:
     - "Image Processing"
-    - "CUDA Parallelization"
+    - "Robotic Operate System"
     - "Computer Vision"
-    - "Pattern Recognition"
-  url: "https://github.com/x29959/spectral-processing"
+    - "Object Detection"
+  url:
