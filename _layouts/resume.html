@@ -18,6 +18,7 @@
                 <a href="mailto:{{ site.resume_contact_email }}" class="btn">Contact Me</a>
               {% endif %}
               <a href="#projects" class="btn btn-outline">View My Projects</a>
+              <a href="#experience" class="btn btn-outline">View My Experience</a>
             </div>
           </div>
           <div class="hero-image fade-in">
@@ -122,6 +123,90 @@
     </section>
     {% endif %}
 
+    <!-- Experience Section -->
+    {% if site.resume_section_experience %}
+    <section id="experience" class="section" style="background-color: #f8f9fa;">
+      <div class="wrapper">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="projects-grid">
+          {% for job in site.data.experience %}
+          <div class="project-card fade-in" data-job-id="{{ forloop.index }}">
+            <div class="project-content full-width">
+              <h3 class="project-title">
+                {% if job.url %}
+                  <a href="{{ job.url }}">{{ job.company }}</a>
+                {% else %}
+                  {{ job.company }}
+                {% endif %}
+              </h3>
+              
+              <div class="project-image-container">
+                <div class="project-image-wrapper">
+                  {% if job.images %}
+                    {% for image in job.images %}
+                      <img src="{{ image | relative_url }}" alt="{{ job.company }}" class="project-image-slide zoomable-image {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" data-full-img="{{ image | relative_url }}">
+                    {% endfor %}
+                    
+                    <div class="project-image-controls">
+                      <div class="image-control prev" onclick="prevJobImage({{ forloop.index }})">
+                        <i class="fas fa-chevron-left"></i>
+                      </div>
+                      <div class="image-control next" onclick="nextJobImage({{ forloop.index }})">
+                        <i class="fas fa-chevron-right"></i>
+                      </div>
+                    </div>
+                    
+                    <div class="project-overlay">
+                      <h3 class="project-title-overlay">{{ job.company }}</h3>
+                      <div class="project-gallery-nav">
+                        {% for image in job.images %}
+                          <div class="gallery-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="showJobImage({{ forloop.index }}, {{ forloop.index0 }})"></div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% elsif job.image %}
+                    <img src="{{ job.image | relative_url }}" alt="{{ job.company }}" class="project-image-slide zoomable-image active" data-full-img="{{ job.image | relative_url }}">
+                    <div class="project-overlay">
+                      <h3 class="project-title-overlay">{{ job.company }}</h3>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="project-period">{{ job.position }} &bull; {{ job.duration }}</div>
+              <p class="project-description">{{ job.summary }}</p>
+
+              {% if job.achievements %}
+                <div class="badge-section">
+                  <div class="badge-title">Key Achievements:</div>
+                  <ul class="resume-item-list">
+                    {% for achievement in job.achievements %}
+                      <li>{{ achievement }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              
+              {% if job.technologies %}
+                <div class="badge-section">
+                  <div class="badge-title">Technologies:</div>
+                  <div class="project-languages">
+                    {% for tech in job.technologies %}
+                      <span class="language-badge">{{ tech }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
     <!-- Skills Section -->
     {% if site.resume_section_skills %}
     <section id="skills" class="section" style="background-color: #f8f9fa;">
@@ -140,29 +225,6 @@
               <div class="skill-progress" style="width: 0%" data-value="{{ skill.proficiency }}"></div>
             </div>
             {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    <!-- Experience Section -->
-    {% if site.resume_section_experience %}
-    <section id="experience" class="section">
-      <div class="wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Experience</h2>
-        </div>
-        <div class="timeline">
-          {% for job in site.data.experience %}
-          <div class="timeline-item fade-in">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3 class="resume-item-title">{{ job.company }}</h3>
-              <h4 class="resume-item-details">{{ job.position }} &bull; {{ job.duration }}</h4>
-              <p class="resume-item-copy">{{ job.summary }}</p>
-            </div>
           </div>
           {% endfor %}
         </div>
@@ -364,43 +426,75 @@
         const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach(card => {
           const projectId = card.getAttribute('data-project-id');
+          const jobId = card.getAttribute('data-job-id');
+          const identifier = projectId || jobId;
           const slides = card.querySelectorAll('.project-image-slide');
           
           if (slides.length > 1) {
             // Start automatic slideshow
-            startSlideshow(projectId);
+            startSlideshow(identifier);
             
             // Pause slideshow on hover
             card.addEventListener('mouseenter', () => {
-              stopSlideshow(projectId);
+              stopSlideshow(identifier);
             });
             
             // Resume slideshow on mouse leave
             card.addEventListener('mouseleave', () => {
-              startSlideshow(projectId);
+              startSlideshow(identifier);
             });
           }
         });
       }
       
-      function startSlideshow(projectId) {
-        if (slideshowIntervals[projectId]) {
-          clearInterval(slideshowIntervals[projectId]);
+      function startSlideshow(identifier) {
+        if (slideshowIntervals[identifier]) {
+          clearInterval(slideshowIntervals[identifier]);
         }
         
-        slideshowIntervals[projectId] = setInterval(() => {
-          nextImage(projectId);
+        slideshowIntervals[identifier] = setInterval(() => {
+          if (identifier.toString().startsWith('e')) {
+            nextJobImage(identifier);
+          } else {
+            nextImage(identifier);
+          }
         }, 3000); // Change image every 3 seconds
       }
       
-      function stopSlideshow(projectId) {
-        if (slideshowIntervals[projectId]) {
-          clearInterval(slideshowIntervals[projectId]);
+      function stopSlideshow(identifier) {
+        if (slideshowIntervals[identifier]) {
+          clearInterval(slideshowIntervals[identifier]);
         }
       }
       
       function showImage(projectId, index) {
         const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        if (!card) return;
+        
+        const slides = card.querySelectorAll('.project-image-slide');
+        const dots = card.querySelectorAll('.gallery-dot');
+        
+        if (slides.length === 0) return;
+        
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+        });
+        
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+        });
+        
+        if (slides[index]) {
+          slides[index].classList.add('active');
+        }
+        
+        if (dots[index]) {
+          dots[index].classList.add('active');
+        }
+      }
+      
+      function showJobImage(jobId, index) {
+        const card = document.querySelector(`.project-card[data-job-id="${jobId}"]`);
         if (!card) return;
         
         const slides = card.querySelectorAll('.project-image-slide');
@@ -450,6 +544,32 @@
         
         showImage(projectId, prevIndex);
       }
+      
+      function nextJobImage(jobId) {
+        const card = document.querySelector(`.project-card[data-job-id="${jobId}"]`);
+        if (!card) return;
+        
+        const slides = card.querySelectorAll('.project-image-slide');
+        if (slides.length === 0) return;
+        
+        const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+        const nextIndex = (currentSlideIndex + 1) % slides.length;
+        
+        showJobImage(jobId, nextIndex);
+      }
+      
+      function prevJobImage(jobId) {
+        const card = document.querySelector(`.project-card[data-job-id="${jobId}"]`);
+        if (!card) return;
+        
+        const slides = card.querySelectorAll('.project-image-slide');
+        if (slides.length === 0) return;
+        
+        const currentSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+        const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+        
+        showJobImage(jobId, prevIndex);
+      }
 
       // Image Modal functionality
       function setupImageModal() {
@@ -467,31 +587,32 @@
         images.forEach(img => {
           img.style.cursor = 'pointer';
           img.addEventListener('click', function(e) {
-            e.preventDefault(); // 防止默認行為
+            e.preventDefault(); 
             
             const projectCard = this.closest('.project-card');
             if (projectCard) {
-              currentModalProjectId = projectCard.getAttribute('data-project-id');
+              currentModalProjectId = projectCard.getAttribute('data-project-id') || projectCard.getAttribute('data-job-id');
+              const isJob = projectCard.hasAttribute('data-job-id');
               currentModalImageIndex = parseInt(this.getAttribute('data-index') || 0);
               
-              // 顯示模態視窗
+              // Show modal
               modal.style.display = 'block';
-              document.body.style.overflow = 'hidden'; // 防止背景滾動
+              document.body.style.overflow = 'hidden'; // Prevent background scrolling
               
-              // 設置圖片和標題
+              // Set image and title
               modalImg.src = this.getAttribute('data-full-img') || this.src;
               captionText.innerHTML = this.alt;
               
-              // 載入高解析度圖片
+              // Load high-resolution image
               const highResImg = new Image();
               highResImg.onload = function() {
                 modalImg.src = this.src;
               };
               highResImg.src = this.getAttribute('data-full-img') || this.src;
               
-              // 檢查是否有多個圖片
-              const projectImages = projectCard.querySelectorAll('.project-image-slide');
-              if (projectImages.length > 1) {
+              // Check if there are multiple images
+              const images = projectCard.querySelectorAll('.project-image-slide');
+              if (images.length > 1) {
                 prevBtn.style.display = 'block';
                 nextBtn.style.display = 'block';
               } else {
@@ -499,40 +620,40 @@
                 nextBtn.style.display = 'none';
               }
               
-              // 停止自動輪播
+              // Stop automatic slideshow
               stopSlideshow(currentModalProjectId);
             }
           });
         });
         
-        // 關閉模態視窗
+        // Close modal
         closeBtn.addEventListener('click', function() {
           closeModal();
         });
         
-        // 點擊背景關閉
+        // Click background to close
         modal.addEventListener('click', function(event) {
           if (event.target === modal) {
             closeModal();
           }
         });
         
-        // 在模態視窗中導航
+        // Navigate in modal
         prevBtn.addEventListener('click', function(e) {
-          e.stopPropagation(); // 防止事件冒泡導致關閉模態視窗
+          e.stopPropagation(); // Prevent event bubbling
           if (currentModalProjectId) {
             navigateModalImage('prev');
           }
         });
         
         nextBtn.addEventListener('click', function(e) {
-          e.stopPropagation(); // 防止事件冒泡導致關閉模態視窗
+          e.stopPropagation(); // Prevent event bubbling
           if (currentModalProjectId) {
             navigateModalImage('next');
           }
         });
         
-        // 鍵盤導航
+        // Keyboard navigation
         document.addEventListener('keydown', function(event) {
           if (modal.style.display === 'block') {
             if (event.key === 'Escape') {
@@ -547,9 +668,9 @@
         
         function closeModal() {
           modal.style.display = 'none';
-          document.body.style.overflow = ''; // 恢復背景滾動
+          document.body.style.overflow = ''; // Restore background scrolling
           
-          // 恢復自動輪播
+          // Resume automatic slideshow
           if (currentModalProjectId) {
             startSlideshow(currentModalProjectId);
             currentModalProjectId = null;
@@ -560,7 +681,8 @@
       function navigateModalImage(direction) {
         if (!currentModalProjectId) return;
         
-        const projectCard = document.querySelector(`.project-card[data-project-id="${currentModalProjectId}"]`);
+        const projectCard = document.querySelector(`.project-card[data-project-id="${currentModalProjectId}"]`) || 
+                            document.querySelector(`.project-card[data-job-id="${currentModalProjectId}"]`);
         if (!projectCard) return;
         
         const images = projectCard.querySelectorAll('.project-image-slide');
@@ -576,10 +698,10 @@
         }
         
         const currentImage = images[currentModalImageIndex];
-        // 設置圖片並顯示載入中效果
+        // Show loading effect
         modalImg.style.opacity = 0.5;
         
-        // 載入高解析度圖片
+        // Load high-resolution image
         const highResImg = new Image();
         highResImg.onload = function() {
           modalImg.src = this.src;

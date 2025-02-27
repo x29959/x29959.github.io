@@ -122,6 +122,228 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
+// Project cards when used for experience section
+.project-content.full-width {
+  width: 100%;
+}
+
+.projects-grid .project-card[data-job-id] {
+  grid-column: 1 / -1; // Make experience cards take full width
+}
+
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.project-image-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.project-image-slide.active {
+  opacity: 1;
+}
+
+.project-image-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-image-controls {
+  opacity: 1;
+}
+
+.image-control {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.image-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  padding: 20px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-gallery-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.gallery-dot.active {
+  background-color: white;
+}
+
+/* Badges for languages and methods */
+.badge-section {
+  margin-top: 1rem;
+}
+
+.badge-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.project-languages,
+.project-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.language-badge,
+.method-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.language-badge {
+  background-color: rgba(74, 108, 247, 0.1);
+  color: var(--primary-color);
+}
+
+.method-badge {
+  background-color: rgba(25, 135, 84, 0.1);
+  color: var(--success-color);
+}
+
+/* Image modal for zoomed view */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.modal-caption {
+  color: white;
+  text-align: center;
+  padding: 15px;
+  max-width: 90%;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.modal-navigation {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.modal-nav-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
 // Skills section
 .skills-container {
   display: flex;
@@ -236,4 +458,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .social-icon:hover {
   color: var(--primary-color);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column-reverse;
+  }
+  
+  .hero-image {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-image-wrapper {
+    padding-bottom: 66.67%; /* 3:2 aspect ratio on mobile */
+  }
 }
