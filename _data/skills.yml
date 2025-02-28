@@ -3,11 +3,11 @@
 
 # Data Science & Machine Learning
 - skill: "Data Science & Machine Learning"
-  description: "Expert in data analysis, machine learning algorithms, and statistical modeling. Proficient in developing and deploying ML models for classification, regression, and clustering tasks."
+  description: "Expert in data analysis, machine learning algorithms. Proficient in developing and deploying ML models for classification on mobile robot."
 
 # Programming Languages
 - skill: "Programming Languages"
-  description: "Proficient in Python, C++, MATLAB, JavaScript, and R for software development, data analysis, and scientific computing applications."
+  description: "Proficient in Python, MATLAB, and JavaScript for software development, data analysis, and servers."
 
 # Hyperspectral Imaging
 - skill: "Hyperspectral Imaging & Remote Sensing"
@@ -15,8 +15,5 @@
 
 # Web Development
 - skill: "Web Development"
-  description: "Skilled in front-end and back-end web development using modern frameworks like React, Node.js, and D3.js. Experience in creating interactive data visualization dashboards."
-
-# Scientific Research
-- skill: "Scientific Research & Documentation"
-  description: "Strong background in scientific research methodologies, experimental design, and academic writing. Experienced in publishing research findings and technical documentation."
+  description: "Skilled in front-end and back-end web development using modern frameworks Node.js. Experience in creating interactive data visualization dashboards."
+  
