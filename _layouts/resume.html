@@ -256,31 +256,6 @@
     </section>
     {% endif %}
 
-    <!-- Skills Section -->
-    {% if site.resume_section_skills %}
-    <section id="skills" class="section" style="background-color: #f8f9fa;">
-      <div class="wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Skills</h2>
-        </div>
-        <div class="skills-container">
-          {% for skill in site.data.skills %}
-          <div class="skill-category fade-in">
-            <h3 class="skill-title">{{ skill.skill }}</h3>
-            <p>{{ skill.description }}</p>
-            
-            {% if skill.proficiency %}
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 0%" data-value="{{ skill.proficiency }}"></div>
-            </div>
-            {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
     <!-- Education Section -->
     {% if site.resume_section_education %}
     <section id="education" class="section" style="background-color: #f8f9fa;">
@@ -322,6 +297,33 @@
     </section>
     {% endif %}
 
+    <!-- Skills Section -->
+    {% if site.resume_section_skills %}
+    <section id="skills" class="section" style="background-color: #f8f9fa;">
+      <div class="wrapper">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+        </div>
+        <div class="skills-container">
+          {% for skill in site.data.skills %}
+          <div class="skill-category fade-in">
+            <h3 class="skill-title">{{ skill.skill }}</h3>
+            <p>{{ skill.description }}</p>
+            
+            {% if skill.proficiency %}
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 0%" data-value="{{ skill.proficiency }}"></div>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+
+
     {% if site.resume_section_interests %}
     <section id="interests" class="section">
       <div class="wrapper">
@@ -357,6 +359,9 @@
         </div>
       </div>
     </div>
+
+
+
 
     <!-- JavaScript for animations and interactions -->
     <script>
