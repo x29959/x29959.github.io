@@ -395,6 +395,36 @@
             card.addEventListener('mouseleave', () => {
               startSlideshow(identifier);
             });
+            
+            // Setup manual navigation controls for experience section (jobId)
+            if (jobId) {
+              const prevControl = card.querySelector('.image-control.prev');
+              const nextControl = card.querySelector('.image-control.next');
+              
+              if (prevControl) {
+                prevControl.addEventListener('click', function(e) {
+                  e.stopPropagation(); // Prevent event bubbling
+                  prevJobImage(jobId);
+                });
+              }
+              
+              if (nextControl) {
+                nextControl.addEventListener('click', function(e) {
+                  e.stopPropagation(); // Prevent event bubbling
+                  nextJobImage(jobId);
+                });
+              }
+              
+              // Setup gallery dots
+              const dots = card.querySelectorAll('.gallery-dot');
+              dots.forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                  e.stopPropagation();
+                  const index = parseInt(this.getAttribute('data-index') || 0);
+                  showJobImage(jobId, index);
+                });
+              });
+            }
           }
         });
       }
@@ -405,12 +435,12 @@
         }
         
         slideshowIntervals[identifier] = setInterval(() => {
-          if (identifier.toString().startsWith('e')) {
+          if (identifier && identifier.toString().startsWith('e')) {
             nextJobImage(identifier);
           } else {
             nextImage(identifier);
           }
-        }, 3000); // Change image every 3 seconds
+        }, 5000); // Change image every 5 seconds (increased from 3s for better viewing)
       }
       
       function stopSlideshow(identifier) {
@@ -742,6 +772,35 @@
         });
       }
       
+      // Debug touch & click events for experience section images
+      function debugImageInteractions() {
+        const jobCards = document.querySelectorAll('.project-card[data-job-id]');
+        
+        jobCards.forEach(card => {
+          const controls = card.querySelectorAll('.image-control');
+          
+          controls.forEach(control => {
+            // Add extra click handler for desktop browser compatibility
+            control.addEventListener('click', function(e) {
+              e.stopPropagation();
+              e.preventDefault();
+              
+              const jobId = card.getAttribute('data-job-id');
+              if (this.classList.contains('prev')) {
+                prevJobImage(jobId);
+              } else if (this.classList.contains('next')) {
+                nextJobImage(jobId);
+              }
+            }, true); // Use capture phase
+            
+            // Make controls more visible on desktop
+            if (window.innerWidth > 991) {
+              control.style.opacity = '0.8';
+            }
+          });
+        });
+      }
+      
       // Initialize all functionality when the DOM is ready
       document.addEventListener('DOMContentLoaded', function() {
         initSlideshows();
@@ -750,6 +809,7 @@
         setupFadeAnimations();
         setupSmoothScroll();
         optimizeImages();
+        debugImageInteractions(); // Add this new function call
       });
     </script>
   </body>
