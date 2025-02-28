@@ -268,6 +268,9 @@
           <div class="education-item fade-in">
             <h3 class="resume-item-title">{{ education.uni }}</h3>
             <h4 class="resume-item-details">{{ education.degree }} &bull; {{ education.year }}</h4>
+            {% if education.grade %}
+              <h5 class="resume-item-details">Grade: {{ education.grade }}</h5>
+            {% endif %}
             {% if education.award %}
               <h5 class="resume-item-details">{{ education.award }}</h5>
             {% endif %}
