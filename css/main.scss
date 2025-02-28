@@ -129,6 +129,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .projects-grid .project-card[data-job-id] {
   grid-column: 1 / -1; // Make experience cards take full width
+  max-width: 800px; // Limit width for better appearance
+  margin: 0 auto 2rem; // Center the card and add bottom margin
 }
 
 .project-image-container {
@@ -138,17 +140,25 @@ h1, h2, h3, h4, h5, h6 {
   margin: 1rem 0;
 }
 
+// Regular project image wrapper
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  height: auto;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
   overflow: hidden;
 }
 
-/* Experience section specific image wrapper */
+/* Experience section specific image wrapper - make it smaller */
+.project-card[data-job-id] .project-image-container {
+  max-width: 600px; // Limit width for experience images
+  margin: 1rem auto; // Center the image container
+}
+
 .project-card[data-job-id] .project-image-wrapper {
-  min-height: 400px; /* Ensure minimum height */
-  height: auto; /* Allow height to grow if needed */
+  padding-bottom: 60%; // Slightly taller aspect ratio
+  height: 0;
+  max-height: 350px; // Limit height on desktop
 }
 
 .project-image-slide {
@@ -516,12 +526,17 @@ h1, h2, h3, h4, h5, h6 {
   .project-image-wrapper {
     padding-bottom: 66.67%; /* 3:2 aspect ratio on mobile */
   }
+  
+  .project-card[data-job-id] .project-image-wrapper {
+    padding-bottom: 66.67%; /* 3:2 aspect ratio on mobile */
+    max-height: none; // Let it adjust naturally on mobile
+  }
 }
 
 /* Responsive adjustments for medium screens */
 @media (min-width: 768px) and (max-width: 1199px) {
   .project-card[data-job-id] .project-image-wrapper {
-    min-height: 400px;
+    max-height: 300px;
   }
 }
 
@@ -530,6 +545,7 @@ h1, h2, h3, h4, h5, h6 {
   .project-card[data-job-id] .project-image-wrapper {
     min-height: 500px;
     padding-bottom: 45%; /* Lower aspect ratio for wider screens */
+    max-height: 350px;
   }
   
   .modal-content {
