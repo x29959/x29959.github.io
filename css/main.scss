@@ -141,15 +141,13 @@ h1, h2, h3, h4, h5, h6 {
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio for standard projects */
   height: 0;
   overflow: hidden;
 }
 
 /* Experience section specific image wrapper */
 .project-card[data-job-id] .project-image-wrapper {
-  padding-bottom: 56.25%; /* 16:9 aspect ratio for consistent display */
-  min-height: 300px; /* Ensure minimum height */
+  min-height: auto; /* Ensure minimum height */
   height: auto; /* Allow height to grow if needed */
 }
 
