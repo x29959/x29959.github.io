@@ -141,9 +141,15 @@ h1, h2, h3, h4, h5, h6 {
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 66.67%; /* 3:2 aspect ratio to work on all devices */
   height: 0;
   overflow: hidden;
+}
+
+/* Experience section specific image wrapper */
+.project-card[data-job-id] .project-image-wrapper {
+  padding-bottom: 66.67%; /* 3:2 aspect ratio for experience images */
+  max-height: 500px; /* Maximum height for large screens */
 }
 
 .project-image-slide {
@@ -152,9 +158,10 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Changed from cover to contain to prevent cropping */
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+  background-color: #f8f9fa; /* Light background for images with transparency */
 }
 
 .project-image-slide.active {
@@ -296,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 .modal-content {
   max-width: 90%;
   max-height: 80%;
-  object-fit: contain;
+  object-fit: contain; /* Ensure modal images are fully visible */
 }
 
 .modal-caption {
@@ -480,5 +487,16 @@ h1, h2, h3, h4, h5, h6 {
   
   .project-image-wrapper {
     padding-bottom: 66.67%; /* 3:2 aspect ratio on mobile */
+  }
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 1200px) {
+  .project-card[data-job-id] .project-image-wrapper {
+    max-height: 600px; /* Even more space for very large screens */
+  }
+  
+  .modal-content {
+    max-height: 85%; /* More space for modal images on large screens */
   }
 }
