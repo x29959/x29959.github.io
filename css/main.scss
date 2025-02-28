@@ -141,13 +141,13 @@ h1, h2, h3, h4, h5, h6 {
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  height: 0;
+  height: auto;
   overflow: hidden;
 }
 
 /* Experience section specific image wrapper */
 .project-card[data-job-id] .project-image-wrapper {
-  min-height: auto; /* Ensure minimum height */
+  min-height: 400px; /* Ensure minimum height */
   height: auto; /* Allow height to grow if needed */
 }
 
