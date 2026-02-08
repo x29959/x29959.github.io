@@ -230,4 +230,45 @@ export default Vue.component(name, getVueOptions(name));
     margin:5px 0 10px;
 
 }
+
+@media screen and (max-width: 768px) {
+  #template {
+    #resume-header {
+      height: auto;
+      padding: 20px;
+      #header-left {
+        h1 {
+          font-size: 32px;
+          line-height: 36px;
+        }
+        h2 {
+          font-size: 16px;
+        }
+        #info-flex {
+          flex-wrap: wrap;
+          span {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+    #resume-body {
+      padding: 20px;
+      .experience {
+        margin-left: 20px;
+      }
+      .education {
+        margin-left: 20px;
+      }
+      #skill-list {
+        column-count: 2;
+      }
+    }
+    #resume-footer {
+      position: relative;
+      height: auto;
+      padding: 20px;
+    }
+  }
+}
 </style>

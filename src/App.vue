@@ -26,4 +26,13 @@ body {
   overflow-x: hidden;
   background: #CCCCCC;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
 </style>

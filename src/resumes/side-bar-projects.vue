@@ -261,5 +261,26 @@ export default Vue.component(name, getVueOptions(name));
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .top-row {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      span.person-name {
+        font-size: 28px;
+        letter-spacing: 5px;
+      }
+    }
+    .left-col {
+      width: 100%;
+      float: none;
+      padding: 0 4%;
+    }
+    .right-col {
+      width: 100%;
+      float: none;
+      padding: 0 4%;
+    }
+  }
 }
 </style>
