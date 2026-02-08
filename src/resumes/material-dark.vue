@@ -493,4 +493,21 @@ h4 {
   width:25px;
   padding-left:17px;
 }
+
+@media screen and (max-width: 768px) {
+  .leftCol {
+    width: 100%;
+    float: none;
+    .heading {
+      height: 200px;
+    }
+  }
+  .rightCol {
+    width: 100%;
+    float: none;
+    .block {
+      width: 100%;
+    }
+  }
+}
 </style>

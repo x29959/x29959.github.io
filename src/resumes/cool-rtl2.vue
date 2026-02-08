@@ -379,4 +379,31 @@ export default Vue.component(name, getVueOptions(name));
   padding: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+  .content__left {
+    width: 100%;
+  }
+  .content__right {
+    width: 100%;
+  }
+  .picture {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin: 20px auto;
+    display: block;
+  }
+  .banner {
+    width: 100%;
+    padding: 15px;
+    &__fullname {
+      font-size: 24px;
+    }
+  }
+}
+
 </style>

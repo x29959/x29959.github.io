@@ -256,5 +256,34 @@ export default Vue.component(name, getVueOptions(name));
         padding-left: 4%;
         padding-right: 2%;
     }
+
+    @media screen and (max-width: 768px) {
+      .half {
+        width: 100%;
+        float: none;
+        padding: 0 4%;
+      }
+      .half.left, .half.right {
+        text-align: left;
+        float: none;
+        padding: 0 4%;
+      }
+      .projects {
+        float: none;
+        width: 100%;
+        padding: 0 4%;
+      }
+      .name {
+        font-size: 24px;
+        letter-spacing: 5px;
+      }
+      .skills .skill-block .skill-bar {
+        width: 100%;
+        max-width: 249px;
+      }
+      .project-block {
+        width: 100%;
+      }
+    }
 }
 </style>

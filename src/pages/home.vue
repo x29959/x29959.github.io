@@ -2,7 +2,7 @@
   <div class="home">
     <a href="https://github.com/salomonelli/best-resume-ever" target="_blank"
       ><img
-        style="position: absolute; top: 0; right: 0; border: 0"
+        class="fork-ribbon"
         src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
         alt="Fork me on GitHub"
         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
@@ -178,6 +178,14 @@ export default Vue.component('resume', {
   font-family: "Roboto" !important;
 }
 
+.fork-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  max-width: 150px;
+}
+
 .logo {
   text-align: center;
 }
@@ -188,11 +196,10 @@ export default Vue.component('resume', {
 }
 
 .title {
-  font-weight: normal;
+  font-weight: 300;
   text-align: center;
   width: 100%;
   color: black;
-  font-weight: 300;
   font-size: 30px;
   line-height: 110%;
   margin: 1.78rem 0 1.424rem 0;
@@ -204,13 +211,14 @@ export default Vue.component('resume', {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5%;
 }
 
 .preview {
   width: 180px;
-  float: left;
-  margin-left: 1.5%;
-  margin-right: 1.5%;
   margin-bottom: 1.5%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -242,7 +250,6 @@ export default Vue.component('resume', {
   transform: translateY(-50%);
 }
 
-
 .sponsoring {
   display: grid;
   text-align: center;
@@ -250,5 +257,60 @@ export default Vue.component('resume', {
   padding-top: 50px;
   padding-bottom: 50px;
   width: 100%;
+}
+
+.sponsoring img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .previews {
+    width: 95%;
+  }
+
+  .preview {
+    width: 45%;
+    height: auto;
+    max-width: 250px;
+  }
+
+  .preview span {
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .previews {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .preview {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .preview span {
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    height: 40px;
+    margin-top: 20px;
+  }
 }
 </style>
