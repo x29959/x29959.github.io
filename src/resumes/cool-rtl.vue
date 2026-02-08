@@ -368,4 +368,24 @@ a {
   margin-top: 5px;
   padding: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .content__left,
+  .content__right {
+    width: 100%;
+  }
+
+  .picture {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .banner {
+    text-align: center;
+  }
+}
 </style>

@@ -208,4 +208,46 @@ export default Vue.component(name, getVueOptions(name));
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+  #resume3 {
+    .resume-header .triangle {
+      border-width: 300px 100vw 0 0;
+      right: -30%;
+      top: -100px;
+    }
+
+    .resume-header .person-header {
+      left: 5%;
+      top: 20px;
+
+      .name {
+        font-size: 28px;
+      }
+
+      .position {
+        font-size: 16px;
+      }
+    }
+
+    .resume-content {
+      margin-top: 220px;
+      margin-right: 5%;
+      width: 90%;
+
+      .about {
+        width: 100%;
+      }
+    }
+
+    .skill-section .skills .skill-block {
+      width: 100%;
+      float: none;
+    }
+
+    .contact a, .contact span {
+      float: none;
+    }
+  }
+}
 </style>

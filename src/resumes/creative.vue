@@ -496,4 +496,23 @@ a {
   margin-bottom: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  .resume {
+    flex-direction: column;
+  }
+
+  .left-column {
+    width: 100%;
+    position: relative;
+  }
+
+  .left-column-bg {
+    display: none;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+}
+
 </style>
