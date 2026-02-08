@@ -204,14 +204,14 @@ export default Vue.component('resume', {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .preview {
   width: 180px;
-  float: left;
-  margin-left: 1.5%;
-  margin-right: 1.5%;
-  margin-bottom: 1.5%;
+  margin: 1.5%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
   height: 252px;
@@ -250,5 +250,31 @@ export default Vue.component('resume', {
   padding-top: 50px;
   padding-bottom: 50px;
   width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .preview {
+    width: calc(50% - 3%);
+    height: auto;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .previews {
+    width: 95%;
+  }
+
+  .preview span {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .preview {
+    width: calc(100% - 3%);
+  }
 }
 </style>

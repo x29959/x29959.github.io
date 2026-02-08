@@ -542,4 +542,26 @@ h4 {
     width: 25px;
     padding-left: 17px;
 }
+
+@media screen and (max-width: 768px) {
+  .leftCol {
+    width: 100%;
+    float: none;
+  }
+
+  .rightCol {
+    width: 100%;
+    float: none;
+  }
+
+  .farRightCol {
+    width: 100%;
+    float: none;
+  }
+
+  .rightCol .block,
+  .farRightCol .block {
+    width: 100%;
+  }
+}
 </style>

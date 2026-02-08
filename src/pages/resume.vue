@@ -39,9 +39,27 @@ export default Vue.component('resume', {
   background: white;
   position: relative;
   width: 21cm;
-  height: 29.68cm;
+  min-height: 29.68cm;
   display: block;
   page-break-after: auto;
   overflow: hidden;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 21cm) {
+  .page {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media print {
+  .page {
+    width: 21cm;
+    height: 29.68cm;
+    overflow: hidden;
+  }
 }
 </style>

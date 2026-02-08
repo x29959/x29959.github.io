@@ -223,4 +223,36 @@ export default Vue.component(name, getVueOptions(name));
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  #resume1 {
+    .name {
+      font-size: 24px;
+      letter-spacing: 5px;
+      margin-top: 40px;
+    }
+
+    .half {
+      width: 100%;
+      float: none;
+      text-align: left;
+      padding: 0 4%;
+    }
+
+    .half.left {
+      text-align: left;
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+
+    .half.right {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+
+    .skills .skill-block .skill-bar {
+      width: calc(100% - 110px);
+    }
+  }
+}
 </style>
