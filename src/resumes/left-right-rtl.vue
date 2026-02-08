@@ -235,12 +235,12 @@ export default Vue.component(name, getVueOptions(name));
     .half {
       width: 100%;
       float: none;
-      text-align: left;
+      text-align: right;
       padding: 0 4%;
     }
 
     .half.left {
-      text-align: left;
+      text-align: right;
       padding-left: 4%;
       padding-right: 4%;
     }
